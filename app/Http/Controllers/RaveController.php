@@ -1,0 +1,57 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Controllers\LogicController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Rave;
+
+class RaveController extends Controller
+{
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    public function index()
+    {
+        $user = Auth::user();
+        return view('pages.deposit')->with('user', $user);
+    }
+
+    /**
+     * Initialize Rave payment process
+     * @return void
+     */
+
+    public function initialize(Request $request)
+    {
+        //This initializes payment and redirects to the payment gateway
+        Rave::initialize(route('callback'));
+    }
+
+    /**
+     * Obtain Rave callback information
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function callback(Request $request)
+    {
+        $body = $request->all();
+        $data = json_decode($body['resp'])->data->transactionobject;
+
+        if ($data->status = "successful") {
+            // transaction was successful...
+            DepositController::deposit($data->amount);
+
+            Session::flash('success', 'Deposit successful.');
+            return redirect('/');
+        }
+        else {
+            Session::flash('fail', 'Deposit unsuccessful.');
+            return redirect('/');
+        }
+    }
+}
