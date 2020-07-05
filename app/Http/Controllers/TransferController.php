@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +29,9 @@ class TransferController extends Controller
         if (!($userFrom->wallet->customerID == $request->customer))
         {
             // Get the wallet of the destination customer
-            $transfer = Wallet::where('customerID', $request->customer)->firstOrFail();
+            $transfer = User::where('customerID', $request->customer)->firstOrFail();
+
+//            exit($transfer);
 
             if ($transfer)
             {
@@ -38,9 +41,12 @@ class TransferController extends Controller
                     try {
                         DB::beginTransaction();
 
+                        // subtract input funds from sender
                         $userFrom->wallet->balance -= $request->amount;
                         $userFrom->wallet->save();
-                        $transfer->balance += $request->amount;
+
+                        // add funds to recipient
+                        $transfer->wallet->balance += $request->amount;
                         $transfer->save();
 
                         DB::commit();

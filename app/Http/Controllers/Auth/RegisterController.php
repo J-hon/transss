@@ -57,6 +57,12 @@ class RegisterController extends Controller
         ]);
     }
 
+    private function randomID()
+    {
+        $random = mt_rand(1000, 9999);
+        return (string)$random;
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -67,6 +73,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
+            'customerID' => '00'.$this->randomID(),
             'name' => $data['name'],
             'email' => $data['email'],
             'account_number' => $data['account_number'],
