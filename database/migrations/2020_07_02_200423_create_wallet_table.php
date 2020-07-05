@@ -15,8 +15,11 @@ class CreateWalletTable extends Migration
     {
         Schema::create('wallet', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('balance');
+            $table->decimal('balance', 13, 2)->default(0);
+            $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -27,6 +30,9 @@ class CreateWalletTable extends Migration
      */
     public function down()
     {
+        Schema::table('banks', function (Blueprint $table) {
+            $table->dropForeign('user_id');
+        });
         Schema::dropIfExists('wallet');
     }
 }

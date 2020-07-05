@@ -55,4 +55,6 @@ Route::group(['middleware' => ['web']], function() {
     Route::get('/withdrawal', 'WithdrawalController@showWithdrawalForm')->name('withdrawal');
 //    Route::post('/withdrawal', 'WithdrawalController@withdrawal')->name('withdraw');
 
+    Route::get('/transactions', 'TransactionController@transaction')->name('transactions');
+
 });

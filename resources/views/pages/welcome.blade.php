@@ -28,7 +28,7 @@
                         <div class="card">
                             <div class="card__front card__part">
                                 <p class="card__front-square card__square">
-                                    {{ $user->account_number }}
+                                    Transss
                                 </p>
                                 <img class="card__front-logo card__logo" src="{{ asset('images/card.png') }}">
                                 <p class="card_number">

@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\User;
-use App\Wallet;
 
 class UserTableObserver
 {
@@ -17,10 +16,7 @@ class UserTableObserver
 
     public function created(User $user)
     {
-        $wallet = new Wallet;
-        $wallet->balance = 0;
-        $wallet->user_id = $user->id;
-        $wallet->save();
+        $user->wallet()->create();
     }
 
     /**

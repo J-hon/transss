@@ -15,9 +15,13 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->string('narration');
             $table->string('type');
-            $table->string('amount');
+            $table->double('amount', 8, 2);
+            $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -28,6 +32,9 @@ class CreateTransactionsTable extends Migration
      */
     public function down()
     {
+        Schema::table('banks', function (Blueprint $table) {
+            $table->dropForeign('user_id');
+        });
         Schema::dropIfExists('transactions');
     }
 }

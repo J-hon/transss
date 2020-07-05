@@ -27,8 +27,8 @@
                                 {{ csrf_field() }}
 
                                 <div class="form-group">
-                                    <label for="customer">Customer ID</label>
-                                    <input type="text" name="customer" maxlength="6" onkeypress="return isNumber(event)" class="form-input">
+                                    <label for="customer">Phone number</label>
+                                    <input type="text" name="customer" maxlength="11" onkeypress="return isNumber(event)" class="form-input">
                                 </div>
 
                                 <div class="form-group">

@@ -27,7 +27,7 @@ class RaveController extends Controller
      * @return void
      */
 
-    public function initialize(Request $request)
+    public function initialize()
     {
         //This initializes payment and redirects to the payment gateway
         Rave::initialize(route('callback'));

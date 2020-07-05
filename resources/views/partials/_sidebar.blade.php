@@ -31,6 +31,13 @@
                         </a>
                     </li>
 
+                    <li class="{{ (request()->is('transactions')) ? 'active' : '' }}">
+                        <a href="{{ route('transactions') }}">
+                            <i class="fas fa-clipboard-list"></i>
+                            Transactions
+                        </a>
+                    </li>
+
                 </ul>
             </nav>
         </div>

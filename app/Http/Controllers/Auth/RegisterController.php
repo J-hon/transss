@@ -52,15 +52,9 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'account_number' => ['required', 'string', 'min:10', 'unique:users'],
+            'phone_number' => ['required', 'size:11', 'regex:/(0)[0-9]/', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
-    }
-
-    private function randomID()
-    {
-        $random = mt_rand(1000, 9999);
-        return (string)$random;
     }
 
     /**
@@ -73,10 +67,9 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'customerID' => '00'.$this->randomID(),
             'name' => $data['name'],
             'email' => $data['email'],
-            'account_number' => $data['account_number'],
+            'phone_number' => $data['phone_number'],
             'password' => Hash::make($data['password']),
         ]);
     }
