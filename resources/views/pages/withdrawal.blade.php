@@ -22,6 +22,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="row m-t-">
                             <form action="{{ route('withdraw') }}" method="post" id="deposit">
                                 {{ csrf_field() }}
