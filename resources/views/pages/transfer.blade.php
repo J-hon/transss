@@ -23,7 +23,7 @@
                             </div>
                         </div>
                         <div class="row m-t-" id="deposit">
-                            <form action="{{ route('transfer') }}" method="POST">
+                            <form action="{{ route('transfer') }}" method="post">
                                 {{ csrf_field() }}
 
                                 <div class="form-group">
@@ -33,7 +33,7 @@
 
                                 <div class="form-group">
                                     <label for="amount">Amount</label>
-                                    <input type="text" name="amount" onkeypress="return isNumber(event)" class="form-input" />
+                                    <input type="text" name="amount" maxlength="6" onkeypress="return isNumber(event)" class="form-input" />
                                 </div>
 
                                 <div class="form-group">

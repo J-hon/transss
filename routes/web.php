@@ -53,7 +53,7 @@ Route::group(['middleware' => ['web']], function() {
     Route::post('/transfer', 'TransferController@transfer')->name('transfer');
 
     Route::get('/withdrawal', 'WithdrawalController@showWithdrawalForm')->name('withdrawal');
-//    Route::post('/withdrawal', 'WithdrawalController@withdrawal')->name('withdraw');
+    Route::post('/withdrawal', 'WithdrawalController@withdrawal')->name('withdraw');
 
     Route::get('/transactions', 'TransactionController@transaction')->name('transactions');
 
