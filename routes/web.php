@@ -13,7 +13,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::group(['middleware' => ['auth']], function () {
+
+    // Dashboard route...
+    Route::get('/dashboard', 'PagesController@dashboard')->name('dashboard');
+
+    // Deposit routes...
+    Route::get('/deposit', 'RaveController@index')->name('deposit');
+    Route::post('/pay', 'RaveController@initialize')->name('pay');
+    Route::get('/rave/callback', 'RaveController@callback')->name('callback');
+
+    // Transfer routes...
+    Route::get('/transfer', 'TransferController@showTransferForm')->name('transfer');
+    Route::post('/transfer', 'TransferController@transfer')->name('transfer');
+
+    // Withdrawal routes...
+    Route::get('/withdrawal', 'WithdrawalController@showWithdrawalForm')->name('withdrawal');
+    Route::post('/withdrawal', 'WithdrawalController@withdrawal')->name('withdraw');
+
+    // Transaction routes...
+    Route::get('/transactions', 'TransactionController@transaction')->name('transactions');
+});
+
 Route::group(['middleware' => ['web']], function() {
+
+    // Homepage route...
+    Route::get('/', 'PagesController@index')->name('home');
 
     // Authentication Routes...
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -39,22 +64,5 @@ Route::group(['middleware' => ['web']], function() {
     Route::get('email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify'); // v6.x
     /* Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify'); // v5.x */
     Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
-
-    // Homepage
-    Route::get('/', 'PagesController@index')->name('home');
-
-    // Deposit
-    Route::get('/deposit', 'RaveController@index')->name('deposit');
-
-    Route::post('/pay', 'RaveController@initialize')->name('pay');
-    Route::get('/rave/callback', 'RaveController@callback')->name('callback');
-
-    Route::get('/transfer', 'TransferController@showTransferForm')->name('transfer');
-    Route::post('/transfer', 'TransferController@transfer')->name('transfer');
-
-    Route::get('/withdrawal', 'WithdrawalController@showWithdrawalForm')->name('withdrawal');
-    Route::post('/withdrawal', 'WithdrawalController@withdrawal')->name('withdraw');
-
-    Route::get('/transactions', 'TransactionController@transaction')->name('transactions');
 
 });

@@ -10,4 +10,6 @@ class WithdrawalController extends Controller
     {
         return view('pages.withdrawal');
     }
+
+
 }

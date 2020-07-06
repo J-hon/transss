@@ -11,11 +11,6 @@ use Rave;
 class RaveController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
         $user = Auth::user();
@@ -47,11 +42,11 @@ class RaveController extends Controller
             DepositController::deposit($data->amount);
 
             Session::flash('success', 'Deposit successful.');
-            return redirect('/');
+            return redirect('/dashboard');
         }
         else {
             Session::flash('fail', 'Deposit unsuccessful.');
-            return redirect('/');
+            return redirect('/dashboard');
         }
     }
 }

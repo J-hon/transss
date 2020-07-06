@@ -9,10 +9,6 @@ use Illuminate\Support\Facades\DB;
 
 class DepositController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     private static function saveTransactionDetails($type, $user, $amount)
     {

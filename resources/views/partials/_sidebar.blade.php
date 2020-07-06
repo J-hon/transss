@@ -4,8 +4,8 @@
         <div class="menu-sidebar__content js-scrollbar1">
             <nav class="navbar-sidebar">
                 <ul class="list-unstyled navbar__list">
-                    <li class="{{ (request()->is('/')) ? 'active' : '' }}">
-                        <a href="{{ route('home') }}">
+                    <li class="{{ (request()->is('dashboard')) ? 'active' : '' }}">
+                        <a href="{{ route('dashboard') }}">
                             <i class="fas fa-credit-card"></i>
                             Wallet
                         </a>
