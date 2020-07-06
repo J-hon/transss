@@ -14,17 +14,18 @@ Run the following commands in your terminal
 - `git transss`
 - `composer install`
 
+Steps:
 1. Rename or copy `.env.example` file to `.env`.
 2. Start your server.
 3. Import the `transss.sql` file into your database (MySQL)
 4. Run `php artisan migrate` and `php artisan db:seed`to migrate tables.
 5. Copy this link `http://localhost:8000/` and paste in your browser.
 
-Username: "test"
+`Username`: "test"
 
-Password: "password" (without the quotes of course ;)
+`Password`: "password" (without the quotes of course ;)
 
-Test bank card details: 
+Test Bank card details: 
 
 `Card number:` 4242 4242 4242 4242 
 
