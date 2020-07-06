@@ -39,7 +39,7 @@
 
                                 <div class="form-group">
                                     <button class="form-button" name="submit" type="submit">
-                                        Transfer
+                                        Withdraw
                                     </button>
                                 </div>
                             </form>

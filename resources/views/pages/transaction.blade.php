@@ -39,7 +39,7 @@
                                             <td>{{ $transaction->narration }}</td>
                                             <td>{{ $transaction->type }}</td>
                                             <td>₦{{ $transaction->amount }}</td>
-                                            <td>{{ date('M j, Y - H:i', strtotime($transaction->updated_at)) }}</td>
+                                            <td>{{ date('F j, Y, g:i a', strtotime($transaction->updated_at)) }}</td>
                                         </tr>
 
                                         @empty
