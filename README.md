@@ -39,5 +39,3 @@ Bank card details
 `Card number:` 4242 4242 4242 4242 
 
 `Pin:` 3310 `CVV:` 812 `Exp:` 01/21 `OTP:` 12345 
-
-Thank you :)
