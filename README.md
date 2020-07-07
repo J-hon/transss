@@ -6,10 +6,10 @@ purchases.
 
 <b>Requirements</b>
 
-- PHP >= 5.6.4
+- PHP >= 7.*
 - MySQL >= 5.7
-- composer
-- internet connection
+- Composer
+- Internet connection
 
 <b>Installation</b>
 
@@ -25,8 +25,12 @@ Open your terminal and run the following commands:
 1. Rename or copy `.env.example` file to `.env`.
 2. Start your server.
 3. Import the `transss.sql` file into your database (MySQL)
-4. Run `php artisan migrate` and `php artisan db:seed`to migrate tables.
+4. Run `php artisan migrate` to migrate tables.
 5. Copy this link `http://localhost:8000/` and paste in your browser.
+
+For Transfer:
+
+Register two or more accounts to use the Transfer feature
 
 For Deposit:
 
