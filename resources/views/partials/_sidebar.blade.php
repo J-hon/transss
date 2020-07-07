@@ -4,6 +4,12 @@
         <div class="menu-sidebar__content js-scrollbar1">
             <nav class="navbar-sidebar">
                 <ul class="list-unstyled navbar__list">
+                    <li>
+                        <br><br><img src="{{ asset('images/myAvatar.png') }}" style="border-radius: 30px;" width="50px" height="50px" alt="avatar" />
+                        <b>{{ \Illuminate\Support\Facades\Auth::user()->name }}</b>
+                        <br><br>
+                    </li>
+
                     <li class="{{ (request()->is('dashboard')) ? 'active' : '' }}">
                         <a href="{{ route('dashboard') }}">
                             <i class="fas fa-credit-card"></i>
@@ -35,6 +41,15 @@
                         <a href="{{ route('transactions') }}">
                             <i class="fas fa-clipboard-list"></i>
                             Transactions
+                        </a>
+                    </li>
+
+                    <br><br><br><br>
+
+                    <li>
+                        <a href="{{ route('logout') }}">
+                            <i class="zmdi zmdi-power"></i>
+                            Logout
                         </a>
                     </li>
 

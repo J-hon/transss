@@ -19,6 +19,7 @@
                                     <h2 class="title-1">
                                         Withdrawal
                                     </h2>
+                                    <h5 class="text-danger">Please, note that amount must be ₦500 and above</h5>
                                 </div>
                             </div>
                         </div>

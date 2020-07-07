@@ -18,7 +18,7 @@ class TransferController extends Controller
         return view('pages.transfer');
     }
 
-    private function updateDB($type, $user, $amount)
+    public function updateDB($type, $user, $amount)
     {
         if ($type === 'deduct')
         {
@@ -51,7 +51,7 @@ class TransferController extends Controller
         // Check if the ID of the customer to transfer to is not the same as the currently logged in user.
         if (!($userFrom->phone_number == $request->customer))
         {
-            // Get the wallet of the destination customer
+            // Check if user exists
             $userTo = User::where('phone_number', $request->customer)->firstOrFail();
 
             if ($userTo)
@@ -77,8 +77,8 @@ class TransferController extends Controller
 
                             DB::commit();
 
-                            Session::flash('success', 'Transfer successful :)');
-                            return redirect()->route('home');
+                            Session::flash('message', 'Transfer successful :)');
+                            return redirect()->route('dashboard');
                         }
                         catch (\Throwable $exception) {
                             DB::rollBack();
@@ -86,19 +86,19 @@ class TransferController extends Controller
                         }
                     }
 
-                    Session::flash('fail', 'Oops!!! You cant transfer more than 100,000 :(');
-                    return redirect()->route('home');
+                    Session::flash('message', 'Oops!!! You cant transfer more than ₦100,000 :(');
+                    return redirect()->route('dashboard');
                 }
 
-                Session::flash('fail', 'Oops!!! Insufficient funds :(');
-                return redirect()->route('home');
+                Session::flash('message', 'Oops!!! Insufficient funds :(');
+                return redirect()->route('dashboard');
             }
 
-            Session::flash('fail', "Oops!!! Customer doesn't exist! :(");
-            return redirect()->route('home');
+            Session::flash('message', "Oops!!! Customer doesn't exist! :(");
+            return redirect()->route('dashboard');
         }
 
-        Session::flash('fail', "You can't transfer funds to self. :(");
-        return redirect()->route('home');
+        Session::flash('message', "You can't transfer funds to self. :(");
+        return redirect()->route('dashboard');
     }
 }

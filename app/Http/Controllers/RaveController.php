@@ -41,11 +41,11 @@ class RaveController extends Controller
             // transaction was successful...
             DepositController::deposit($data->amount);
 
-            Session::flash('success', 'Deposit successful.');
+            Session::flash('message', 'Deposit successful.');
             return redirect('/dashboard');
         }
         else {
-            Session::flash('fail', 'Deposit unsuccessful.');
+            Session::flash('message', 'Deposit unsuccessful.');
             return redirect('/dashboard');
         }
     }

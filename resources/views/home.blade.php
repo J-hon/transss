@@ -82,7 +82,7 @@
 
     <div class="content">
         <div class="title m-b-md">
-            Transss...
+            Transss
         </div>
 
         <div class="links">
