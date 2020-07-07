@@ -34,7 +34,7 @@ Register two or more accounts to use the Transfer feature
 
 <b>For Deposit:</b>
 
-Test Bank card details: 
+Bank card details 
 
 `Card number:` 4242 4242 4242 4242 
 
