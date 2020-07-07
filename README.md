@@ -23,10 +23,9 @@ Open your terminal and run the following commands:
 
 <b>Steps</b>
 1. Rename or copy `.env.example` file to `.env`.
-2. Start your server.
-3. Import the `transss.sql` file into your database (MySQL)
-4. Run `php artisan migrate` to migrate tables.
-5. Copy this link `http://localhost:8000/` and paste in your browser.
+2. Input your database credentials.
+3. Run `php artisan migrate` to migrate tables.
+4. Copy this link `http://localhost:8000/` and paste in your browser.
 
 <b>For Transfer:</b>
 
