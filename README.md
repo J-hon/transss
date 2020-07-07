@@ -28,11 +28,11 @@ Open your terminal and run the following commands:
 4. Run `php artisan migrate` to migrate tables.
 5. Copy this link `http://localhost:8000/` and paste in your browser.
 
-For Transfer:
+<b>For Transfer:</b>
 
 Register two or more accounts to use the Transfer feature
 
-For Deposit:
+<b>For Deposit:</b>
 
 Test Bank card details: 
 
