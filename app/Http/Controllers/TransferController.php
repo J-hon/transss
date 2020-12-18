@@ -48,7 +48,7 @@ class TransferController extends Controller
         $userFrom = Auth::user();
         $amount = $request->amount;
 
-        // Check if the ID of the customer to transfer to is not the same as the currently logged in user.
+        // Check if the phone number of the customer to transfer to is not the same as the currently logged in user.
         if (!($userFrom->phone_number == $request->customer))
         {
             // Check if user exists

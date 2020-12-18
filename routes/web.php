@@ -20,8 +20,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     // Deposit routes...
     Route::get('/deposit', 'RaveController@index')->name('deposit');
-    Route::post('/pay', 'RaveController@initialize')->name('pay');
-    Route::get('/rave/callback', 'RaveController@callback')->name('callback');
+    Route::post('rave/pay', 'RaveController@initialize')->name('pay');
+
+    // Webhook route
+    Route::post('/payment/webhook', 'FlutterwaveWebhookController@receive');
 
     // Transfer routes...
     Route::get('/transfer', 'TransferController@showTransferForm')->name('transfer');

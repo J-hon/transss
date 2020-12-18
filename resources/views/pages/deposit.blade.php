@@ -24,7 +24,7 @@
                         </div>
                         <div class="row m-t-" id="deposit">
                             <form action="{{ route('pay') }}" method="POST">
-                                {{ csrf_field() }}
+                                @csrf
 
                                 <div class="form-group">
                                     <label for="name">Name</label>
