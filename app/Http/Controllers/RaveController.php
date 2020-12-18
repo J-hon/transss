@@ -16,7 +16,7 @@ class RaveController extends Controller
     public function __construct()
     {
         $this->baseUrl = 'https://api.flutterwave.com/v3';
-        $this->httpClient = Http::withToken('FLWSECK_TEST-00561c960fb9aff50b5a21b0cc7405c1-X');
+        $this->httpClient = Http::withToken(config("settings.secretKey"));
     }
 
     public function index()
@@ -48,9 +48,14 @@ class RaveController extends Controller
 
         $response = $this->httpClient->post($this->baseUrl . '/payments', $payload);
         $transaction = json_decode($response, true);
-        $redirectUrl = $transaction['data']['link'];
 
-        return redirect($redirectUrl);
+        return redirect($transaction['data']['link']);
+    }
+
+    private function getBanks()
+    {
+        $response = $this->httpClient->get($this->baseUrl . '/banks/NG');
+        return json_decode($response, true);
     }
 
     public function verifyTransaction(string $transactionId)
@@ -58,6 +63,10 @@ class RaveController extends Controller
         $response = $this->httpClient->get($this->baseUrl . '/transactions/' . $transactionId . '/verify');
         return json_decode($response, true);
     }
+
+
+
+
 
     /**
      * Obtain Rave callback information
@@ -70,7 +79,8 @@ class RaveController extends Controller
         $body = $request->all();
         $data = json_decode($body['resp'])->data->transactionobject;
 
-        if ($data->status = "successful") {
+        if ($data->status = "successful")
+        {
             // transaction was successful...
             DepositController::deposit($data->amount);
 

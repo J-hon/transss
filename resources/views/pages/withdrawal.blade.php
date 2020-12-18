@@ -26,7 +26,7 @@
 
                         <div class="row m-t-">
                             <form action="{{ route('withdraw') }}" method="post" id="deposit">
-                                {{ csrf_field() }}
+                                {{ csrf_token() }}
 
                                 <div class="form-group">
                                     <label for="account_number">Account number</label>

@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Webhook route
+Route::post('/payment/webhook', 'FlutterwaveWebhookController@receive');
+
 Route::group(['middleware' => ['auth']], function () {
 
     // Dashboard route...
@@ -21,9 +24,6 @@ Route::group(['middleware' => ['auth']], function () {
     // Deposit routes...
     Route::get('/deposit', 'RaveController@index')->name('deposit');
     Route::post('rave/pay', 'RaveController@initialize')->name('pay');
-
-    // Webhook route
-    Route::post('/payment/webhook', 'FlutterwaveWebhookController@receive');
 
     // Transfer routes...
     Route::get('/transfer', 'TransferController@showTransferForm')->name('transfer');
