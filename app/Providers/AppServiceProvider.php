@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Schema\Builder;
 use App\User;
@@ -26,6 +27,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // when in production or staging, force https so asset files are loaded properly
+        if (config('app.env') !== 'local')
+        {
+            URL::forceScheme('https');
+        }
+
         User::observe(UserTableObserver::class);
         Builder::defaultStringLength(191); // Update defaultStringLength
     }

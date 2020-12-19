@@ -2,21 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\PaymentGatewayContract;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Str;
 
 class RaveController extends Controller
 {
 
-    private $httpClient, $baseUrl;
+    public $flutterwaveService;
 
-    public function __construct()
+    public function __construct(PaymentGatewayContract $flutterwaveService)
     {
-        $this->baseUrl = 'https://api.flutterwave.com/v3';
-        $this->httpClient = Http::withToken(config("settings.secretKey"));
+        $this->flutterwaveService = $flutterwaveService;
     }
 
     public function index()
@@ -27,45 +25,12 @@ class RaveController extends Controller
 
     public function initialize(Request $request)
     {
-        $user = Auth::user();
-        $payload = [
-            'tx_ref' => Str::uuid(),
-            'amount' => $request->amount,
-            'payment_options' => 'card',
-            'redirect_url' => route('deposit'),
-            'currency' => 'NGN',
-            'customer' => [
-                'name' => $request->name,
-                'email' => $request->email,
-                'phone_number' => $user->phone_number
-            ],
-            'customizations' => [
-                "title" => "Test run",
-                "description" => "Middle out isn't free. Pay the price",
-                "logo" => "https://res.cloudinary.com/oiniks/image/upload/v1603047172/oiniks/customers/profile_pictures/d2b8c8f0-1172-11eb-bd6d-655773ed91d4.jpg",
-            ],
-        ];
+        $params = $request->all();
+        $params['user'] = Auth::user();
+        $initialize = $this->flutterwaveService->initialize($params);
 
-        $response = $this->httpClient->post($this->baseUrl . '/payments', $payload);
-        $transaction = json_decode($response, true);
-
-        return redirect($transaction['data']['link']);
+        return redirect($initialize['data']['link']);
     }
-
-    private function getBanks()
-    {
-        $response = $this->httpClient->get($this->baseUrl . '/banks/NG');
-        return json_decode($response, true);
-    }
-
-    public function verifyTransaction(string $transactionId)
-    {
-        $response = $this->httpClient->get($this->baseUrl . '/transactions/' . $transactionId . '/verify');
-        return json_decode($response, true);
-    }
-
-
-
 
 
     /**
