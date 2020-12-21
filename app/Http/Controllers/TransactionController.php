@@ -11,7 +11,7 @@ class TransactionController extends Controller
     public function transaction()
     {
         $user = Auth::user();
-        $data['transactions'] = Transaction::where('user_id', $user->id)->latest()->paginate(10);
+        $data['transactions'] = $user->transactions;
 
         return view('pages.transaction')->with($data);
     }

@@ -17,7 +17,7 @@ class TransferController extends Controller
         return view('pages.transfer');
     }
 
-    public function updateDB($type, $user, $amount)
+    public static function updateDB($type, $user, $amount)
     {
         if ($type === 'deduct')
         {
@@ -52,13 +52,11 @@ class TransferController extends Controller
         {
             // Check if user exists
             $userTo = User::where('phone_number', $request->customer)->firstOrFail();
-
             if ($userTo)
             {
                 // Ensure user has enough balance in their wallet to transfer
                 if ($userFrom->wallet->balance >= $amount)
                 {
-
                     // Ensure amount isn't greater than 100000
                     if ($amount < 100000)
                     {
@@ -66,10 +64,10 @@ class TransferController extends Controller
                             DB::beginTransaction();
 
                             // subtract input funds from sender
-                            $this->updateDB('deduct', $userFrom, $amount);
+                            self::updateDB('deduct', $userFrom, $amount);
 
                             // add funds to recipient
-                            $this->updateDB('add', $userTo, $amount);
+                            self::updateDB('add', $userTo, $amount);
 
                             // Insert transaction details in Transactions table
                             $this->saveTransactionDetails('Transfer', $userFrom, $userTo, $amount);

@@ -29,7 +29,6 @@ class WithdrawalController extends Controller
 
     public function withdrawal(Request $request)
     {
-
         $user = Auth::user();
         $amount = $request->amount;
 
@@ -39,9 +38,7 @@ class WithdrawalController extends Controller
             // Ensure amount to be withdrawn is NOT less than 500
             if (!($amount < 500))
             {
-
                 try {
-
                     DB::beginTransaction();
 
                     // reduce balance in wallet

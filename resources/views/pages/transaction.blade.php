@@ -49,9 +49,9 @@
                                 </tbody>
                             </table>
 
-                            <div class="offset-5 text-center">
-                                {!! $transactions->links() !!}
-                            </div>
+{{--                            <div class="offset-5 text-center">--}}
+{{--                                {!! $transactions->links() !!}--}}
+{{--                            </div>--}}
                         </div>
                     </div>
                 </div>
