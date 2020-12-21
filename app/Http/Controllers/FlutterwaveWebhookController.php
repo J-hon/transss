@@ -25,7 +25,7 @@ class FlutterwaveWebhookController extends BaseController
             exit();
         }
 
-        $local_signature = config("settings.secretHash");
+        $local_signature = config("settings.raveSecretHash");
         if ($signature !== $local_signature)
         {
             // silently forget this ever happened

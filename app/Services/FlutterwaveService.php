@@ -14,7 +14,7 @@ class FlutterwaveService implements PaymentGatewayContract
     public function __construct()
     {
         $this->baseUrl = 'https://api.flutterwave.com/v3';
-        $this->httpClient = Http::withToken(config("settings.secretKey"));
+        $this->httpClient = Http::withToken(config("settings.raveSecretKey"));
     }
 
     public function initialize(array $params)

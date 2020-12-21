@@ -2,10 +2,10 @@
 
 return [
 
-    'publicKey' => env('RAVE_PUBLIC_KEY'),
+    'ravePublicKey' => env('RAVE_PUBLIC_KEY'),
 
-    'secretKey' => env('RAVE_SECRET_KEY'),
+    'raveSecretKey' => env('RAVE_SECRET_KEY'),
 
-    'secretHash' => env('RAVE_SECRET_HASH', ''),
+    'raveSecretHash' => env('RAVE_SECRET_HASH', ''),
 
 ];
