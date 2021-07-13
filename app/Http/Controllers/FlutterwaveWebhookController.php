@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Log;
 class FlutterwaveWebhookController extends BaseController
 {
 
+    // You need to use either ngrok or pusher to hit this webhook i.e. https://dd657be336eb.ngrok.io/payment/webhook
+
     public function receive()
     {
         if ((strtoupper($_SERVER['REQUEST_METHOD']) !== 'POST') == true)
@@ -35,6 +37,7 @@ class FlutterwaveWebhookController extends BaseController
         $response = \GuzzleHttp\json_decode($body, true);
         if ($response['event'] == 'charge.completed' && strtolower($response['data']['status']) == 'successful')
         {
+            Log::info($response);
             Log::info('Payment Successful');
         }
         else {

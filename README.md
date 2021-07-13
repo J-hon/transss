@@ -18,12 +18,10 @@ Open your terminal and run the following commands:
 - `git clone https://github.com/J-hon/transss.git`
 - `cd transss`
 - `composer install`
-- `php artisan vendor:publish --provider="KingFlamez\Rave\RaveServiceProvider"
-`
 
 <b>Steps</b>
 1. Rename or copy `.env.example` file to `.env`.
-2. Input your database credentials.
+2. Input your database and Flutterwave credentials.
 3. Run `php artisan migrate` to migrate tables.
 4. Copy this link `http://localhost:8000/` and paste in your browser.
 
